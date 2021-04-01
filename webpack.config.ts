@@ -18,7 +18,7 @@ export default (env: {}, argv: { mode: string }) => {
     const config: Configuration = {
         mode: "none",
         entry: {
-            main: "./src/app.tsx"
+            sandbox: "./src/app.ts"
         },
 
         output: {
@@ -32,13 +32,13 @@ export default (env: {}, argv: { mode: string }) => {
                 "@": path.resolve(__dirname, "./src"),
                 config: path.join(__dirname, "src", "core", "ts", "config", argv.mode)
             },
-            extensions: [".ts", ".tsx", ".js"]
+            extensions: [".ts", ".js"]
         },
 
         module: {
             rules: [
                 {
-                    test: /\.(ts|tsx)$/,
+                    test: /\.ts$/,
                     use: "ts-loader",
                     exclude: /node_modules/
                 },
@@ -71,7 +71,7 @@ export default (env: {}, argv: { mode: string }) => {
             new HtmlWebpackPlugin({
                 filename: "index.html",
                 template: "./src/index.html",
-                chunks: ["main"],
+                chunks: ["sandbox"],
                 inject: true,
                 minify: true
             })
