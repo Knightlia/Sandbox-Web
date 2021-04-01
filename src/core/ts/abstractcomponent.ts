@@ -1,4 +1,4 @@
-import { Attributes, Vnode } from "mithril";
+import { Attributes, Component, Vnode } from "mithril";
 import AbstractModel from "@/core/ts/abstractmodel";
 import EventBus from "@/core/ts/events/eventbus";
 
@@ -7,17 +7,18 @@ interface DefaultAttributes<T extends AbstractModel> extends Attributes {
     model?: T;
 }
 
-export default abstract class AbstractComponent<T extends AbstractModel = AbstractModel, K extends DefaultAttributes<T> = DefaultAttributes<T>> {
+export default abstract class AbstractComponent<T extends AbstractModel = AbstractModel, K extends DefaultAttributes<T> = DefaultAttributes<T>>
+    implements Component<K> {
 
-    protected readonly eventBus?: EventBus;
-    protected readonly model?: T;
+    protected readonly eventBus!: EventBus;
+    protected readonly model!: T;
 
     constructor(vnode?: Vnode<K>) {
         if (vnode) {
-            this.eventBus = vnode.attrs.eventBus;
-            this.model = vnode.attrs.model;
+            this.eventBus = vnode.attrs.eventBus!;
+            this.model = vnode.attrs.model!;
         }
     }
 
-    abstract view(vnode?: Vnode): Vnode;
+    abstract view(vnode?: Vnode<K>): Vnode;
 }

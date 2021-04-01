@@ -4,6 +4,7 @@ import { icons } from "@/core/ts/iconhandler";
 import "@/components/topbar/less/topbar.less";
 
 export default class TopBar extends AbstractComponent {
+
     view(): Vnode {
         return m("nav.navbar", [
             m("div", [
@@ -11,9 +12,17 @@ export default class TopBar extends AbstractComponent {
             ]),
             m(".nav-right", [
                 m("button", icons.trash),
-                m("button", icons.people),
-                m("button", icons.brightness)
+                m("button", { onclick: () => this._fireSidebarToggleEvent() }, icons.people),
+                m("button", { onclick: () => this._fireThemeToggleEvent() }, icons.brightness)
             ])
         ]);
+    }
+
+    private _fireSidebarToggleEvent(): void {
+        this.eventBus.publish("sidebar.toggle");
+    }
+
+    private _fireThemeToggleEvent(): void {
+        this.eventBus.publish("theme.toggle");
     }
 }
