@@ -14,7 +14,7 @@ export default abstract class AbstractComponent<T extends AbstractModel = Abstra
     protected readonly model!: T;
 
     constructor(vnode?: Vnode<K>) {
-        if (vnode) {
+        if (vnode && vnode.attrs) {
             this.eventBus = vnode.attrs.eventBus!;
             this.model = vnode.attrs.model!;
         }
