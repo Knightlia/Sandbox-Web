@@ -2,7 +2,7 @@ import { Attributes, Component, Vnode } from "mithril";
 import AbstractModel from "@/core/ts/abstractmodel";
 import EventBus from "@/core/ts/events/eventbus";
 
-interface DefaultAttributes<T extends AbstractModel> extends Attributes {
+export interface DefaultAttributes<T extends AbstractModel> extends Attributes {
     eventBus?: EventBus;
     model?: T;
 }

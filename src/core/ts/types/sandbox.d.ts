@@ -10,3 +10,16 @@ interface EnvironmentConfiguration {
     nickname?: string;
     avatarColour?: string;
 }
+
+interface NicknameResponse {
+    status: boolean;
+    nickname: string;
+    message: string;
+}
+
+interface SandboxMessage {
+    sender: string;
+    message: string;
+    time: number;
+    avatarColour: string;
+}
