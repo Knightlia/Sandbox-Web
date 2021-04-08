@@ -41,4 +41,4 @@ jobs:
       - name: Deploy
         uses: wei/curl@master
         with:
-          args: ${{ secret.DEPLOY_URL }}
+          args: ${{ secrets.DEPLOY_URL }}
