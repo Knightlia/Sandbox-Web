@@ -36,7 +36,6 @@ export default class SocketHandler {
     }
 
     private _onMessage(e: MessageEvent): void {
-        console.log(`Received message from WebSocket: ${e.data}`);
         const data = JSON.parse(e.data);
 
         switch (data.mt) {

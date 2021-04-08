@@ -5,7 +5,6 @@ import config from "config";
 export default class NameApi {
 
     static nicknameRequest(eventBus: EventBus, nickname: string, callback?: Function): void {
-        console.log(`Making nickname request for name: ${nickname}`);
         POST("/v1/nickname", { nickname: nickname }, false, true, (response: NicknameResponse) => {
             if (response.status) {
                 sessionStorage.setItem("n", response.nickname);
