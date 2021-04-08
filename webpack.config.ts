@@ -17,14 +17,11 @@ const postcssLoader = {
 export default (env: {}, argv: { mode: string }) => {
     const config: Configuration = {
         mode: "none",
-        entry: {
-            sandbox: "./src/app.ts"
-        },
+        entry: "./src/app.ts",
 
         output: {
             path: path.resolve(__dirname, "./dist"),
-            filename: "[name].[fullhash].js",
-            chunkFilename: "[name].[chunkhash].js"
+            filename: "[fullhash].js",
         },
 
         resolve: {
@@ -71,7 +68,6 @@ export default (env: {}, argv: { mode: string }) => {
             new HtmlWebpackPlugin({
                 filename: "index.html",
                 template: "./src/index.html",
-                chunks: ["sandbox"],
                 inject: true,
                 minify: true
             })
