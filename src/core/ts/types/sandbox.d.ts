@@ -10,3 +10,9 @@ interface EnvironmentConfiguration {
     nickname?: string;
     avatarColour?: string;
 }
+
+interface NicknameResponse {
+    status: boolean;
+    nickname: string;
+    message: string;
+}

@@ -12,8 +12,10 @@ export default abstract class AbstractModel {
 
     protected init(): void {}
 
-    updateModel(callback: () => void): void {
-        callback();
+    updateModel(callback?: () => void): void {
+        if (callback) {
+            callback();
+        }
         m.redraw();
     }
 }
