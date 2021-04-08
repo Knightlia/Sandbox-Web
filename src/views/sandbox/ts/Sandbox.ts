@@ -9,8 +9,10 @@ import ModalModel from "@/components/modal/ts/modalmodel";
 import TopBarModel from "@/components/topbar/ts/topbarmodel";
 import "@/views/sandbox/less/sandbox.less";
 import SidebarModel from "@/components/sidebar/ts/sidebarmodel";
+import SandboxModel from "@/views/sandbox/ts/sandboxmodel";
+import Bubble from "@/components/message/ts/Bubble";
 
-export default class Sandbox extends AbstractComponent {
+export default class Sandbox extends AbstractComponent<SandboxModel> {
     view(): Vnode {
         return m("main", [
             m(TopBar, {
@@ -21,7 +23,17 @@ export default class Sandbox extends AbstractComponent {
             m(".main-container", [
                 m(".chat-container", [
                     m(".chat-history-container", [
-                        m("div")
+                        m("div", [
+                            this.model.messageList.map((message, i) => {
+                                return m(Bubble, {
+                                    key: i,
+                                    sender: message.sender,
+                                    message: message.message,
+                                    time: message.time,
+                                    avatarColour: message.avatarColour
+                                });
+                            })
+                        ])
                     ]),
 
                     m(Editor, {

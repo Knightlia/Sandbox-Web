@@ -10,16 +10,26 @@ export default class Editor extends AbstractComponent<EditorModel> {
                 this.model.placeholderVisible ? m(".placeholder", "Enter message...") : null,
 
                 m("[contenteditable].input.editor", {
-                    oninput: (e: InputEvent) => this.model.updateEditorInputValue(e.target as HTMLDivElement)
+                    oninput: (e: InputEvent) => this.model.updateEditorInputValue(e.target as HTMLDivElement),
+                    onkeydown: (e: KeyboardEvent) => this._onKeyDown(e)
                 }, m.trust(this.model.editorInputValue))
             ]),
 
             m(".editor-menu-container", [
                 m(".editor-left-menu"),
                 m(".editor-right-menu", [
-                    m("button.primary", "Send")
+                    m("button.primary", { onclick: () => this.model.sendMessage() }, "Send")
                 ])
             ])
         ]);
+    }
+
+    private _onKeyDown(e: KeyboardEvent): void {
+        if (!e.shiftKey) {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                this.model.sendMessage();
+            }
+        }
     }
 }

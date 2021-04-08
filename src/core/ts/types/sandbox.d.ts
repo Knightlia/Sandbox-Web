@@ -16,3 +16,10 @@ interface NicknameResponse {
     nickname: string;
     message: string;
 }
+
+interface SandboxMessage {
+    sender: string;
+    message: string;
+    time: number;
+    avatarColour: string;
+}

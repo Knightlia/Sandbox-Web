@@ -28,7 +28,7 @@ export default class TopBar extends AbstractComponent<TopBarModel> {
                     }) : null
             ]),
             m(".nav-right", [
-                m("button", icons.trash),
+                m("button", { onclick: () => this._fireClearChatEvent() }, icons.trash),
                 m("button", { onclick: () => this._fireSidebarToggleEvent() }, icons.people),
                 m("button", { onclick: () => this._fireThemeToggleEvent() }, icons.brightness)
             ])
@@ -41,6 +41,10 @@ export default class TopBar extends AbstractComponent<TopBarModel> {
 
     private _fireThemeToggleEvent(): void {
         this.eventBus.publish("theme.toggle");
+    }
+
+    private _fireClearChatEvent(): void {
+        this.eventBus.publish("view.clear_chat");
     }
 
     private _keyDownHandler(e: KeyboardEvent): void {
