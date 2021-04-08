@@ -35,7 +35,8 @@ jobs:
       - name: Run Tests
         run: npm test
 
-  curl:
+  deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Deploy
