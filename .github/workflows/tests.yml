@@ -34,3 +34,11 @@ jobs:
 
       - name: Run Tests
         run: npm test
+
+  curl:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        uses: wei/curl@master
+        with:
+          args: ${{ secret.DEPLOY_URL }}
