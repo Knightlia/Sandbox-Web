@@ -7,10 +7,10 @@ import EditorModel from "@/components/editor/ts/editormodel";
 import Modal from "@/components/modal/ts/Modal";
 import ModalModel from "@/components/modal/ts/modalmodel";
 import TopBarModel from "@/components/topbar/ts/topbarmodel";
-import "@/views/sandbox/less/sandbox.less";
 import SidebarModel from "@/components/sidebar/ts/sidebarmodel";
 import SandboxModel from "@/views/sandbox/ts/sandboxmodel";
 import Bubble from "@/components/message/ts/Bubble";
+import "@/views/sandbox/less/sandbox.less";
 
 export default class Sandbox extends AbstractComponent<SandboxModel> {
     view(): Vnode {
@@ -30,7 +30,8 @@ export default class Sandbox extends AbstractComponent<SandboxModel> {
                                     sender: message.sender,
                                     message: message.message,
                                     time: message.time,
-                                    avatarColour: message.avatarColour
+                                    avatarColour: message.avatarColour,
+                                    right: message.right
                                 });
                             })
                         ])

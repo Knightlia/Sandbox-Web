@@ -1,4 +1,5 @@
 import AbstractModel from "@/core/ts/abstractmodel";
+import config from "config";
 
 export default class SandboxModel extends AbstractModel {
 
@@ -11,7 +12,8 @@ export default class SandboxModel extends AbstractModel {
 
     private _addMessage(sender: string, message: string, time: number, avatarColour: string): void {
         this.updateModel(() => {
-            this.messageList.push({ sender, message, time, avatarColour });
+            const right = sender === config.nickname;
+            this.messageList.push({ sender, message, time, avatarColour, right });
         });
     }
 
