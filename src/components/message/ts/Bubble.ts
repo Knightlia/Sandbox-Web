@@ -1,23 +1,21 @@
 import m, { Vnode } from "mithril";
-import "@/components/message/less/bubble.less";
 import AbstractComponent, { DefaultAttributes } from "@/core/ts/abstractcomponent";
 import AbstractModel from "@/core/ts/abstractmodel";
-import config from "config";
 import AvatarHandler from "@/core/ts/avatarhandler";
+import "@/components/message/less/bubble.less";
 
 interface BubbleAttrs extends DefaultAttributes<AbstractModel> {
     sender: string;
     message: string;
     time: number;
     avatarColour: string;
+    right: boolean;
 }
 
 export default class Bubble extends AbstractComponent<AbstractModel, BubbleAttrs> {
 
     view(vnode: Vnode<BubbleAttrs>): Vnode {
-        const right = vnode.attrs.sender === config.nickname;
-
-        return m(`.message.bubble${right ? ".right" : ""}`, [
+        return m(`.message.bubble${vnode.attrs.right ? ".right" : ""}`, [
             // Avatar container
             m(".avatar-container", [
                 m(`img[alt=${vnode.attrs.sender}][src=${AvatarHandler.generateAvatar(vnode.attrs.sender, vnode.attrs.avatarColour)}]`),

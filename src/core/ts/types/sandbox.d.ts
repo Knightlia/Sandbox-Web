@@ -22,4 +22,5 @@ interface SandboxMessage {
     message: string;
     time: number;
     avatarColour: string;
+    right: boolean;
 }
